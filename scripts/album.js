@@ -28,25 +28,43 @@ var albumMarconi = {
      ]
 };
 
+var albumKendrick = {
+     title: 'Section.80',
+     artist: 'Kendrick Lamar',
+     label: 'Top Dawg',
+     year: '2011',
+     albumArtUrl: 'assets/images/album_covers/22.jpg',
+     songs: [
+        { title: 'Fuck Your Ethnicity', duration: '3:44' },
+        { title: 'Hol Up', duration: '2:53' },
+        { title: 'A.D.H.D', duration: '3:35'},
+        { title: 'No Make Up', duration: '3:55' },
+        { title: 'Tammys Song', duration: '2:41'},
+        { title: 'Chapter Six', duration: '2:41'},
+        { title: 'Ronald Reagan Era', duration: '3:36'}
+     ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
-    var template = 
+     var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
       + '  <td class="song-item-duration">' + songLength + '</td>'
       + '</tr>'
       ;
-    
-    return template;
-};
+ 
+     return template;
+ };
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-
+ 
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -61,4 +79,13 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     var albums = [albumPicasso, albumMarconi, albumKendrick];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if (index == albums.length) {
+             idex = 0;
+         };
+     });
  };
