@@ -72,7 +72,7 @@ var setCurrentAlbum = function(album) {
     var $albumSongList = $('.album-view-song-list');
  
      
-    $albumTitle.text(album.name);
+    $albumTitle.text(album.title);
     $albumArtist.text(album.artist);
     $albumReleaseInfo.text(album.year + ' ' + album.label);
     $albumImage.attr('src', album.albumArtUrl);
@@ -82,7 +82,7 @@ var setCurrentAlbum = function(album) {
  
     
     for (i = 0; i < album.songs.length; i++) {
-        var $newRow = createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
+        var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].length);
         $albumSongList.append($newRow);
     }
  };
@@ -92,9 +92,9 @@ var trackIndex = function(album, song) {
  };
 
 var updatePlayerBarSong = function() {
-    $('.currently-playing .song-name').text(currentSongFromAlbum.name);
+    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
+    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
 	$('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
